@@ -2,7 +2,15 @@ const express = require('express'),
     ipfilter = require('express-ipfilter').IpFilter,
     IpDeniedError = require('express-ipfilter').IpDeniedError;
 
+global.pool = require('./utils/createPool.js').createPool('4tunes');
+global.regex = {
+    uuid: /^([0-9a-f]{8})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{12})$/i,
+    id: /^([0-9]{17,19})$/
+};
+global.badRequest = require('./routes/badRequest.js');
+
 const app = express();
+app.use(express.json());
 app.set('view engine', 'ejs');
 app.disable('x-powered-by');
 app.disable('etag');
@@ -29,24 +37,28 @@ app.use((err, req, res, _next) => {
     res.json(data);
 });
 
+app.use('/minecraft/players', require('./routes/minecraft.js'));
+app.use('/users/', require('./routes/users.js'));
+app.use('/guilds', require('./routes/guilds.js'));
+
 app.use((req, res) => {
     res.status(404);
     const data = {
         "error": {
             "code": 404,
-            "message": "404 Not Found"
+            "message": "Not Found"
         }
     };
     res.json(data);
 });
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error(err);
     res.status(500);
     const data = {
         "error": {
             "code": 500,
-            "message": "500 Internal Server Error"
+            "message": "Internal Server Error"
         }
     };
     res.json(data);

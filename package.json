@@ -1,5 +1,5 @@
 {
-  "name": "4Tunes",
+  "name": "four_tunes",
   "version": "2.0.0",
   "private": true,
   "description": "",
@@ -15,7 +15,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-ipfilter": "^1.3.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "re2": "^1.17.7"
   },
   "devDependencies": {
     "npm-check-updates": "^16.0.5"

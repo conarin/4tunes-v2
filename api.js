@@ -1,6 +1,8 @@
 const express = require('express'),
     ipfilter = require('express-ipfilter').IpFilter,
     IpDeniedError = require('express-ipfilter').IpDeniedError;
+require('dotenv').config();
+const env = process.env;
 
 global.pool = require('./utils/createPool.js').createPool('4tunes');
 global.regex = {

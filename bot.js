@@ -17,3 +17,4 @@ global.client = new Discord.Client({
 client.login(env.DISCORD_TOKEN);
 require("./init/setCommands.js").execute();
 require("./init/setEvents.js").execute();
+require("./init/setMessageHandles.js").execute();

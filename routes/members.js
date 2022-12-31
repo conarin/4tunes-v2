@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const RE2 = require('re2');
 
 let guild_id;
 
@@ -77,7 +78,7 @@ router.patch('/:user_id', async (req, res, next) => {
         data.is_notify = Boolean(req.body.is_notify);
     }
 
-    const chain_login = req.body.chain_login?.toString().match(/^\d+$/);
+    const chain_login = req.body.chain_login?.toString().match(new RE2(/^\d+$/));
     if (chain_login) data.chain_login = Number(chain_login[0]);
 
     if (!Object.keys(data).length) return badRequest(res, 'Invalid request body');

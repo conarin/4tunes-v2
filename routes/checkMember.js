@@ -1,3 +1,4 @@
+const RE2 = require('re2');
 module.exports = async (baseUrl) => {
     const data = {
         guild_id: null,
@@ -6,8 +7,8 @@ module.exports = async (baseUrl) => {
         error: null
     }
 
-    data.guild_id = baseUrl.match(/\/guilds\/([0-9]{17,19})\//);
-    data.user_id = baseUrl.match(/\/members\/([0-9]{17,19})\//);
+    data.guild_id = baseUrl.match(new RE2(/\/guilds\/([0-9]{17,19})\//));
+    data.user_id = baseUrl.match(new RE2(/\/members\/([0-9]{17,19})\//));
 
     if (!data.guild_id || !data.user_id) return data;
 

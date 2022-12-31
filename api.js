@@ -1,13 +1,14 @@
 const express = require('express'),
     ipfilter = require('express-ipfilter').IpFilter,
-    IpDeniedError = require('express-ipfilter').IpDeniedError;
+    IpDeniedError = require('express-ipfilter').IpDeniedError,
+    RE2 = require('re2');
 require('dotenv').config();
 const env = process.env;
 
 global.pool = require('./utils/createPool.js').createPool('4tunes');
 global.regex = {
-    uuid: /^([0-9a-f]{8})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{12})$/i,
-    id: /^([0-9]{17,19})$/
+    uuid: new RE2(/^([0-9a-f]{8})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{12})$/i),
+    id: new RE2(/^([0-9]{17,19})$/)
 };
 global.badRequest = require('./routes/badRequest.js');
 

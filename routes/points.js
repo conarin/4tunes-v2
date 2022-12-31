@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const RE2 = require('re2');
 const checkMember = require('../routes/checkMember.js');
 
 let guild_id, user_id, is_existing_user, query_error;
@@ -34,7 +35,7 @@ router.post('/', async (req, res, next) => {
         reason: null
     };
 
-    const amount = req.body.amount?.toString().match(/^\d+$/);
+    const amount = req.body.amount?.toString().match(new RE2(/^\d+$/));
     if (!amount) return badRequest(res, 'Invalid request body');
     else data.amount = amount[0];
 
@@ -44,7 +45,7 @@ router.post('/', async (req, res, next) => {
     const message_id = req.body.message_id?.toString().match(regex.id);
     if (message_id) data.message_id = channel_id[1];
 
-    const reason = req.body.reason?.toString().match(/^.{1,100}$/);
+    const reason = req.body.reason?.toString().match(new RE2(/^.{1,100}$/));
     if (reason) data.reason = reason[0];
 
     pool.query('INSERT INTO `points` SET ?', [data])

@@ -48,7 +48,7 @@ module.exports = {
         } catch (e) {
             result = e.message;
         }
-        if (result === null) result = '計算式が正しくありません\n演算子に不足が無いか確認してください'
+        if (result === null) result = '計算式が正しくありません\n演算子の不足が無いか確認してください'
 
         if (formula === result.toString()) return;
 

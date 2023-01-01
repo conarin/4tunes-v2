@@ -51,8 +51,9 @@ module.exports = {
             console.log(embed);
 
             const logChannel = await client.channels.fetch(env.LOG_CHANNEL_ID);
+            const clientApplication = await client.application.fetch();
             if (logChannel) await logChannel
-                .send({content:`<@${(await client.application.fetch()).owner.id}>`, embeds: [embed]})
+                .send({content:`<@${clientApplication.owner.ownerId || clientApplication.owner.id}>`, embeds: [embed]})
                 .catch(error => console.error(error));
 
             await message.channel.send({embeds: [{

@@ -37,7 +37,7 @@ router.get('/', async (req, res, next) => {
     pool.query('SELECT members.user_id, members.guild_id, members.is_notify, members.chain_login, IFNULL(point_balance, 0) AS point_balance, IFNULL(exp, 0) AS exp, IFNULL(message_count, 0) AS message_count, members.created_at, GREATEST(IFNULL(members.updated_at, CAST(0 AS DATETIME)), IFNULL(point_updated_at, CAST(0 AS DATETIME)), IFNULL(exp_updated_at, CAST(0 AS DATETIME)), IFNULL(message_updated_at, CAST(0 AS DATETIME))) AS updated_at FROM `members` ' +
         'LEFT JOIN (SELECT user_id, guild_id, SUM(amount) AS point_balance, MAX(created_at) AS point_updated_at FROM `points` GROUP BY user_id, guild_id) AS points ON members.user_id = points.user_id AND members.guild_id = points.guild_id ' +
         'LEFT JOIN (SELECT user_id, guild_id, SUM(amount) AS exp, MAX(created_at) AS exp_updated_at FROM `experience_points` GROUP BY user_id, guild_id) AS exp ON members.user_id = exp.user_id AND members.guild_id = exp.guild_id  ' +
-        'LEFT JOIN (SELECT user_id, guild_id, COUNT(id) AS message_count, MAX(created_at) AS message_updated_at FROM `messages` GROUP BY user_id, guild_id) AS messages ON members.user_id = messages.user_id AND members.guild_id = messages.guild_id ' +
+        'LEFT JOIN (SELECT user_id, guild_id, COUNT(user_id) AS message_count, MAX(created_at) AS message_updated_at FROM `messages` GROUP BY user_id, guild_id) AS messages ON members.user_id = messages.user_id AND members.guild_id = messages.guild_id ' +
         'WHERE members.guild_id = ?', [guild_id[1]])
         .then(([results]) => {
             if (results.length) res.json(results);
@@ -57,7 +57,7 @@ router.get('/:user_id', async (req, res, next) => {
     pool.query('SELECT members.user_id, members.guild_id, members.is_notify, members.chain_login, IFNULL(point_balance, 0) AS point_balance, IFNULL(exp, 0) AS exp, IFNULL(message_count, 0) AS message_count, members.created_at, GREATEST(IFNULL(members.updated_at, CAST(0 AS DATETIME)), IFNULL(point_updated_at, CAST(0 AS DATETIME)), IFNULL(exp_updated_at, CAST(0 AS DATETIME)), IFNULL(message_updated_at, CAST(0 AS DATETIME))) AS updated_at FROM `members` ' +
         'LEFT JOIN (SELECT user_id, guild_id, SUM(amount) AS point_balance, MAX(created_at) AS point_updated_at FROM `points` GROUP BY user_id, guild_id) AS points ON members.user_id = points.user_id AND members.guild_id = points.guild_id ' +
         'LEFT JOIN (SELECT user_id, guild_id, SUM(amount) AS exp, MAX(created_at) AS exp_updated_at FROM `experience_points` GROUP BY user_id, guild_id) AS exp ON members.user_id = exp.user_id AND members.guild_id = exp.guild_id  ' +
-        'LEFT JOIN (SELECT user_id, guild_id, COUNT(id) AS message_count, MAX(created_at) AS message_updated_at FROM `messages` GROUP BY user_id, guild_id) AS messages ON members.user_id = messages.user_id AND members.guild_id = messages.guild_id ' +
+        'LEFT JOIN (SELECT user_id, guild_id, COUNT(user_id) AS message_count, MAX(created_at) AS message_updated_at FROM `messages` GROUP BY user_id, guild_id) AS messages ON members.user_id = messages.user_id AND members.guild_id = messages.guild_id ' +
         'WHERE members.guild_id = ? AND members.user_id = ?', [guild_id[1], user_id[1]])
         .then(([results]) => {
             if (results.length) res.json(results[0]);

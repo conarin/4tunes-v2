@@ -18,7 +18,7 @@ module.exports = {
                 title: '引用機能',
                 description: msg.content || null,
                 author: {
-                    name: msg.author.tag,
+                    name: `${msg.author.tag}\n(${msg.author.id})`,
                     icon_url: msg.author.avatarURL({format: 'png', dynamic: true, size:128}) ?
                         msg.author.avatarURL({format: 'png', dynamic: true, size:128}) :
                         msg.author.defaultAvatarURL

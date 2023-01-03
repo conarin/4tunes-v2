@@ -27,7 +27,7 @@ module.exports = {
                 channelName = client.user.username,
                 guildName = 'DM';
 
-            if (message.channel.type === Discord.ChannelType.DM) {
+            if (message.channel.type !== Discord.ChannelType.DM) {
                 iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128});
                 channelName = message.channel.name;
                 guildName = message.guild.name;

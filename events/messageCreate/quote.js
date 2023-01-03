@@ -2,6 +2,7 @@ const fetchMessages = require('../../utils/fetchMessages.js');
 const sendMessage = require('../../utils/sendMessage.js');
 module.exports = {
     name: 'quote',
+    guildOnly: true,
     async execute(message) {
         const messages = await fetchMessages.fetch(message.content);
 

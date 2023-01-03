@@ -19,12 +19,12 @@ app.disable('x-powered-by');
 app.disable('etag');
 app.listen(env.API_PORT);
 
-app.use((req, res, next) => {
-    console.log(req.headers['x-forwarded-for'], req.connection.remoteAddress, req.ip);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log(req.headers['x-forwarded-for'], req.connection.remoteAddress, req.ip);
+//     next();
+// });
 
-app.use(ipfilter(['::ffff:127.0.0.1', '::1', '::ffff:192.168.100.6'], { mode: 'allow', log: true, logLevel: 'all' }));
+app.use(ipfilter(['::ffff:127.0.0.1', '::1', '::ffff:192.168.100.6'], { mode: 'allow', log: true, logLevel: 'deny' }));
 app.use((err, req, res, _next) => {
     if (err instanceof IpDeniedError) {
         res.status(401)

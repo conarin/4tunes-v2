@@ -25,7 +25,7 @@ const rest = new Discord.REST({ version: '10' }).setToken(env.DISCORD_TOKEN);
         // The put method is used to fully refresh all commands in the guild with the current set
         const data = await rest.put(
             // Discord.Routes.applicationGuildCommands(env.CLIENT_ID, env.DEV_GUILD_ID),
-            Discord.Routes.applicationGuildCommands(env.CLIENT_ID),
+            Discord.Routes.applicationCommands(env.CLIENT_ID),
             { body: commands },
         );
 

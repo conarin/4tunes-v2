@@ -41,7 +41,7 @@ module.exports = {
                 stickers: [...msg.stickers.values()] || null
             };
 
-            await sendMessage.send(message, options);
+            await sendMessage.send(message, message.channel, options);
         }
     }
 };

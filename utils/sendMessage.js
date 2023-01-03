@@ -3,15 +3,18 @@ require('dotenv').config();
 const env = process.env;
 module.exports = {
     name: 'sendMessage',
-    async send(message, options) {
+    async send(message, sendChannel, options) {
         if (!options) return;
 
-        const replyOptions = message.channel.type === Discord.ChannelType.DM ?
-            {messageReference: message.id, failIfNotExists: false} :
-            message.channel.permissionsFor(client.user).has(Discord.PermissionsBitField.Flags.ReadMessageHistory) ?
-                {messageReference: message.id, failIfNotExists: false} : false;
+        // 送信元チャンネルと送信先チャンネルが同じかつ
+        // DMチャンネルまたはギルドチャンネルでメッセージ履歴の権限があれば
+        let replyOptions = false;
+        if (message.channel.id === sendChannel.id &&
+            (message.channel.type === Discord.ChannelType.DM ||
+                message.channel.permissionsFor(client.user).has(Discord.PermissionsBitField.Flags.ReadMessageHistory))
+        ) replyOptions = {messageReference: message.id, failIfNotExists: false};
 
-        await message.channel.send({
+        await sendChannel.send({
             content: options.content !== undefined ? String(options.content) : null,
             embeds: options.embeds !== undefined && typeof options.embeds === 'object' ? options.embeds : null,
             files: options.files !== undefined && typeof options.files === 'object' ? options.files : null,
@@ -48,15 +51,14 @@ module.exports = {
                     icon_url: iconURL
                 }
             };
-            console.log(embed);
 
-            const logChannel = await client.channels.fetch(env.LOG_CHANNEL_ID);
+            const logChannel = await client.channels.fetch(env.LOG_CHANNEL_ID).catch(error => console.error(error));
             const clientApplication = await client.application.fetch();
             if (logChannel) await logChannel
                 .send({content:`<@${clientApplication.owner.ownerId || clientApplication.owner.id}>`, embeds: [embed]})
                 .catch(error => console.error(error));
 
-            await message.channel.send({embeds: [{
+            await sendChannel.send({embeds: [{
                     color: 0xf04747,
                     title: '予期しない例外が発生しました',
                 }],

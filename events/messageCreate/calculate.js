@@ -4,6 +4,6 @@ module.exports = {
     name: 'calculate',
     async execute(message) {
         const result = calculator.calculate(message.content);
-        if (result !== undefined) await sendMessage.send(message, {content: result});
+        if (result !== undefined) await sendMessage.send(message, message.channel, {content: result});
     }
 };

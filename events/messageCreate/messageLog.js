@@ -1,0 +1,42 @@
+const sendMessage = require('../../utils/sendMessage.js');
+module.exports = {
+    name: 'messageLog',
+    guildOnly: true,
+    async execute(message, data) {
+        if (!data.guildData.log_channel_id) return;
+
+        const iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128}),
+            channelName = message.channel.name,
+            guildName = message.guild.name;
+
+        const contentEmbed = [{
+            color: 0x43b581,
+            description: `[${message.content}](${message.url})`,
+            author: {
+                name: `${message.author.tag}\n(${message.author.id})`,
+                icon_url: message.author.avatarURL({format: 'png', dynamic: true, size:128}) ?
+                    message.author.avatarURL({format: 'png', dynamic: true, size:128}) :
+                    message.author.defaultAvatarURL
+            },
+            footer: {
+                text: `${channelName} in ${guildName}`,
+                icon_url: iconURL
+            },
+            timestamp: message.createdAt
+        }];
+
+        const options = {
+            embeds: contentEmbed.concat(message.embeds),
+            files: [...message.attachments.values()] || null,
+            components: message.components || null,
+            stickers: [...message.stickers.values()] || null
+        };
+
+        const logChannel = await client.channels.fetch(data.guildData.log_channel_id).catch(error => {
+            if (error.status !== 404) console.error(error);
+        });
+        if (!logChannel) return;
+
+        await sendMessage.send(message, logChannel, options);
+    }
+};

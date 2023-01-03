@@ -20,8 +20,12 @@ module.exports = {
         }
 
         for (const handle of [...client.messageHandles.values()]) {
-            if (handle.guildOnly && !message.guild && !message.guild?.available) continue;
-            await handle.execute(message, data);
+            try {
+                if (handle.guildOnly && !message.guild && !message.guild?.available) continue;
+                await handle.execute(message, data);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 };

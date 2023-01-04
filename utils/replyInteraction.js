@@ -50,7 +50,7 @@ module.exports = {
 
             await interaction.reply({embeds: [{
                     color: 0xf04747,
-                    title: '予期しない例外が発生しました',
+                    title: '予期せぬエラーが発生しました',
                 }]
             }).catch(err => {
                 if (err.message !== 'Missing Permissions') console.log(err.stack);

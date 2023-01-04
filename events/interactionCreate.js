@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const replyInteraction = require('../utils/replyInteraction.js');
 module.exports = {
     name: Discord.Events.InteractionCreate,
     once: false,
@@ -16,7 +17,12 @@ module.exports = {
             await command.execute(interaction);
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            await replyInteraction.reply(interaction, {
+                embeds: [{
+                    color: 0xf04747,
+                    title: '予期せぬエラーが発生しました',
+                }]
+            }).catch(error => console.error(error));
         }
     }
 };

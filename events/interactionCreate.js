@@ -19,7 +19,7 @@ module.exports = {
             console.error(error);
             await replyInteraction.reply(interaction, {
                 embeds: [{
-                    color: 0xf04747,
+                    color: client.colors.danger,
                     title: '予期せぬエラーが発生しました',
                 }]
             }).catch(error => console.error(error));

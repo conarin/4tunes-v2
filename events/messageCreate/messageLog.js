@@ -16,7 +16,7 @@ module.exports = {
             guildName = message.guild.name;
 
         const contentEmbed = [{
-            color: 0x43b581,
+            color: client.colors.success,
             description: `[${message.content}](${message.url})`,
             author: {
                 name: `${message.author.tag}\n(${message.author.id})`,

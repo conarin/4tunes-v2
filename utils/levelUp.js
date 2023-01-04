@@ -30,7 +30,7 @@ module.exports = {
         }
 
         const embed = {
-            color: 0x43b581,
+            color: client.colors.success,
             title:'ﾑﾑｯwwwwwwwﾚﾍﾞﾙｱｯﾌﾟwwwwwww',
             description: `Level${previousLevel}→Level${currentLevel}:tada:\n` +
                 `${data.memberData.point_balance}pt→${data.memberData.point_balance+100}pt`,

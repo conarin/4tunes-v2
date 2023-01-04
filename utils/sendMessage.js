@@ -37,7 +37,7 @@ module.exports = {
             }
 
             const embed = {
-                color: 0xf04747,
+                color: client.colors.danger,
                 title: `例外発生`,
                 author: {
                     name: message.author.tag,
@@ -59,7 +59,7 @@ module.exports = {
                 .catch(error => console.error(error));
 
             await sendChannel.send({embeds: [{
-                    color: 0xf04747,
+                    color: client.colors.danger,
                     title: '予期しない例外が発生しました',
                 }],
                 reply: replyOptions,

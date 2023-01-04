@@ -28,7 +28,7 @@ module.exports = {
             }
 
             const embed = {
-                color: 0xf04747,
+                color: client.colors.danger,
                 title: `例外発生`,
                 author: {
                     name: interaction.user.tag,
@@ -50,7 +50,7 @@ module.exports = {
                 .catch(error => console.error(error));
 
             await interaction.reply({embeds: [{
-                    color: 0xf04747,
+                    color: client.colors.danger,
                     title: '予期せぬエラーが発生しました',
                 }]
             }).catch(err => {

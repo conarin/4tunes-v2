@@ -19,13 +19,11 @@ module.exports = {
                 description: msg.content || null,
                 author: {
                     name: `${msg.author.tag}\n(${msg.author.id})`,
-                    icon_url: msg.author.avatarURL({format: 'png', dynamic: true, size:128}) ?
-                        msg.author.avatarURL({format: 'png', dynamic: true, size:128}) :
-                        msg.author.defaultAvatarURL
+                    icon_url: msg.author.displayAvatarURL({format: 'png', dynamic: true, size:128})
                 },
                 fields: reactions.length ? [{
                     name: 'reactions',
-                    value: reactions.join(' '),
+                    value: reactions.join(' ')
                 }] : null,
                 footer: {
                     text: `${msg.channel.name} in ${msg.guild.name}`,

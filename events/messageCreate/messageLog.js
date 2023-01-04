@@ -20,9 +20,7 @@ module.exports = {
             description: `[${message.content}](${message.url})`,
             author: {
                 name: `${message.author.tag}\n(${message.author.id})`,
-                icon_url: message.author.avatarURL({format: 'png', dynamic: true, size:128}) ?
-                    message.author.avatarURL({format: 'png', dynamic: true, size:128}) :
-                    message.author.defaultAvatarURL
+                icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size:128})
             },
             footer: {
                 text: `${channelName} in ${guildName}`,

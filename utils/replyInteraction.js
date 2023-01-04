@@ -10,7 +10,8 @@ module.exports = {
             content: options.content !== undefined ? String(options.content) : null,
             embeds: options.embeds !== undefined && typeof options.embeds === 'object' ? options.embeds : null,
             files: options.files !== undefined && typeof options.files === 'object' ? options.files : null,
-            components: options.components !== undefined && typeof options.components === 'object' ? options.components : null
+            components: options.components !== undefined && typeof options.components === 'object' ? options.components : null,
+            ephemeral: options.ephemeral === true
         }).catch(async error => {
             console.error(error);
             console.log('options: ' + JSON.stringify(options, null, 2));

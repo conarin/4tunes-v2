@@ -8,7 +8,7 @@ module.exports = {
 
         if (!urls.length) return [];
 
-        return await Promise.all(urls.map(async url => {
+        return (await Promise.all(urls.map(async url => {
             const match = url
                 .match(new RE2(/(\/[0-9]+){3}/))[0]
                 .split('/');
@@ -33,6 +33,6 @@ module.exports = {
             if (!message) return;
 
             return message;
-        }).filter(message => message));
+        }))).filter(message => message);
     }
 };

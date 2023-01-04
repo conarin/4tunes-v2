@@ -6,7 +6,7 @@ module.exports = {
         .setDescription('指定したユーザーのアバターを表示する')
         .addUserOption(option => option
             .setName('user')
-            .setDescription('表示したいユーザーを選択')
+            .setDescription('表示したいユーザー')
             .setRequired(false)
         ),
     async execute(interaction) {

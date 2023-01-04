@@ -23,7 +23,7 @@ module.exports = {
         .setDescription('指定したHEXカラーコードの画像を作成する')
         .addStringOption(option => option
             .setName('hex')
-            .setDescription('HEXカラーコード(#000000)を入力')
+            .setDescription('HEXカラーコード(#000000)')
             .setRequired(true)
         ),
     async execute(interaction) {

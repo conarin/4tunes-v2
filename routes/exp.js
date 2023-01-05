@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
         reason: null
     };
 
-    const amount = req.body.amount?.toString().match(/^\d+$/);
+    const amount = req.body.amount?.toString().match(/^[+-]?\d+$/);
     if (!amount) return badRequest(res, 'Invalid request body');
     else data.amount = amount[0];
 

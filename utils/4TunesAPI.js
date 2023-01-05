@@ -65,7 +65,7 @@ module.exports = {
             headers: {'Content-Type': 'application/json'}
         }).then(res => res.status).catch(error => console.error(error));
 
-        if (res !== 201) {
+        if (res !== 204) {
             console.log(`${endpoint}の更新失敗`);
             console.log('res: ' + res);
             console.log(`${API_BASE_URI}${endpoint}`, body);

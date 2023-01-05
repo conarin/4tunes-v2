@@ -17,7 +17,7 @@ module.exports = {
             console.log('options: ' + JSON.stringify(options, null, 2));
             console.log('interaction.options: ' + JSON.stringify(interaction.options, null, 2));
 
-            let iconURL = client.user.avatarURL({format: 'png', dynamic: true, size: 128}),
+            let iconURL = client.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
                 channelName = client.user.username,
                 guildName = 'DM';
 
@@ -32,8 +32,8 @@ module.exports = {
                 title: `例外発生`,
                 author: {
                     name: interaction.user.tag,
-                    icon_url: interaction.user.avatarURL({format: 'png', dynamic: true, size: 128}),
-                    url: interaction.user.avatarURL({format: 'png', dynamic: true, size: 128}),
+                    icon_url: interaction.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
+                    url: interaction.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
                 },
                 description: `${interaction.commandName}\n\`\`\`${error.stack}\`\`\``,
                 timestamp: new Date(),

@@ -26,7 +26,7 @@ module.exports = {
             console.error(error);
             console.log('options: ' + JSON.stringify(options, null, 2));
 
-            let iconURL = client.user.avatarURL({format: 'png', dynamic: true, size: 128}),
+            let iconURL = client.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
                 channelName = client.user.username,
                 guildName = 'DM';
 
@@ -41,8 +41,8 @@ module.exports = {
                 title: `例外発生`,
                 author: {
                     name: message.author.tag,
-                    icon_url: message.author.avatarURL({format: 'png', dynamic: true, size: 128}),
-                    url: message.author.avatarURL({format: 'png', dynamic: true, size: 128}),
+                    icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
+                    url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
                 },
                 description: `${message.content}\n\`\`\`${error.stack}\`\`\``,
                 timestamp: new Date(),

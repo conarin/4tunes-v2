@@ -36,10 +36,10 @@ module.exports = {
                 `${data.memberData.point_balance}pt→${data.memberData.point_balance+100}pt`,
             author: {
                 name: message.author.tag,
-                icon_url: message.author.avatarURL({ format: 'png', dynamic: true, size:2048 }),
+                icon_url: message.author.displayAvatarURL({ format: 'png', dynamic: true, size:2048 }),
             },
             thumbnail: {
-                url: message.author.avatarURL({ format: 'png', dynamic: true, size:2048 })
+                url: message.author.displayAvatarURL({ format: 'png', dynamic: true, size:2048 })
             }
         };
 

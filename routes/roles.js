@@ -13,9 +13,8 @@ router.use(async (req, res, next) => {
 router.get('/', async (req, res, next) => {
     if (!guild_id || !user_id || !is_existing_user) return next();
 
-    pool.query('SELECT * FROM `roles` WHERE roles.guild_id = ? AND roles.user_id = ?', [guild_id[1], user_id[1]])
+    pool.query('SELECT `role_id`, `created_at` FROM `roles` WHERE roles.guild_id = ? AND roles.user_id = ?', [guild_id[1], user_id[1]])
         .then(([results]) => {
-            console.log(results);
             res.json(results)
         })
         .catch(err => {

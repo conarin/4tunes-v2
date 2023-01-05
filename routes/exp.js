@@ -13,7 +13,8 @@ router.use(async (req, res, next) => {
 router.get('/', async (req, res, next) => {
     if (!guild_id || !user_id || !is_existing_user) return next();
 
-    pool.query('SELECT * FROM `experience_points` AS exp WHERE exp.guild_id = ? AND exp.user_id = ?', [guild_id[1], user_id[1]])
+    pool.query('SELECT `channel_id`, `message_id`, `amount`, `reason`, `created_at` FROM `experience_points` AS exp WHERE exp.guild_id = ? AND exp.user_id = ? ' +
+        'ORDER BY `created_at` DESC', [guild_id[1], user_id[1]])
         .then(([results]) => {
             res.json(results)
         })

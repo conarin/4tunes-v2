@@ -13,7 +13,8 @@ router.use(async (req, res, next) => {
 router.get('/', async (req, res, next) => {
     if (!guild_id || !user_id || !is_existing_user) return next();
 
-    pool.query('SELECT * FROM `messages` WHERE messages.guild_id = ? AND messages.user_id = ?', [guild_id[1], user_id[1]])
+    pool.query('SELECT `channel_id`, `message_id`, `created_at` FROM `messages` WHERE messages.guild_id = ? AND messages.user_id = ? ' +
+        'ORDER BY `created_at` DESC', [guild_id[1], user_id[1]])
         .then(([results]) => {
             res.json(results)
         })

@@ -55,6 +55,21 @@ module.exports = {
             console.log(`${endpoint}の追加失敗`);
             console.log('res: ' + res);
             console.log(`${API_BASE_URI}${endpoint}`, body);
+            throw(`${endpoint}の追加失敗`);
+        }
+    },
+    async patch(endpoint, body) {
+        const res = await fetch(`${API_BASE_URI}${endpoint}`, {
+            method: 'PATCH',
+            body: JSON.stringify(body),
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => res.status).catch(error => console.error(error));
+
+        if (res !== 201) {
+            console.log(`${endpoint}の更新失敗`);
+            console.log('res: ' + res);
+            console.log(`${API_BASE_URI}${endpoint}`, body);
+            throw(`${endpoint}の更新失敗`);
         }
     }
 };

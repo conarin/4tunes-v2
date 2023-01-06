@@ -7,6 +7,8 @@ module.exports = {
         const messages = await fetchMessages.fetch(message.content);
 
         for (const msg of messages) {
+            if (msg.guild.id !== message.guild.id) continue;
+
             const reactions = [];
             for (const reaction of [...msg.reactions.cache.values()]){
                 const emoji = reaction.emoji.name,

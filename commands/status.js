@@ -53,7 +53,8 @@ module.exports = {
                             value: memberData.chain_login,
                             inline: true,
                         }
-                    ]
+                    ],
+                    color: client.colors.info
                 }]
             });
         }

@@ -27,10 +27,9 @@ module.exports = {
                         console.log(`${endpoint}/${id}の作成完了`);
                         return this.fetch(endpoint, id);
                     } else {
-                        console.log(`${endpoint}/${id}の作成失敗`);
                         console.log('res: ' + res);
                         console.log(`${API_BASE_URI}${endpoint}`, body);
-                        return;
+                        throw(`${endpoint}/${id}の作成失敗`);
                     }
                 } else {
                     return;
@@ -38,7 +37,7 @@ module.exports = {
             } else {
                 console.log(result);
                 console.log(`${API_BASE_URI}${endpoint}/${id}`, body);
-                return;
+                throw(`${endpoint}/${id}の取得失敗`);
             }
         }
 

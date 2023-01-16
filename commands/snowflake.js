@@ -41,7 +41,7 @@ module.exports = {
 
             const timestamp = Math.floor(Number(DiscordSnowflake.deconstruct(snowflake).timestamp) / 1000);
             await replyInteraction.reply(interaction, {
-                content: `<t:${timestamp}:d><t:${timestamp}:T>`
+                content: `<t:${timestamp}:d> <t:${timestamp}:T>`
             });
         }
     }

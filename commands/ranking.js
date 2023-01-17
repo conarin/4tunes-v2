@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 const ranking = require("../utils/ranking.js");
 const fourTunesAPI = require("../utils/4TunesAPI");
 
@@ -54,7 +54,7 @@ module.exports = {
 
         const ranks = await fourTunesAPI.fetch(`/guilds/${interaction.guild.id}/ranking`, subcommand);
         if (!ranks || !ranks?.length) {
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     title: `${rankingName}ランキング`,
                     description: `メンバーのデータがまだありません`,
@@ -68,7 +68,7 @@ module.exports = {
 
         const resTable = await ranking.table(ranks, subcommand, currentPage, ranking.limit);
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             embeds: [{
                 title: `${rankingName}ランキング`,
                 description: '```\n‌' + resTable + '\n```',

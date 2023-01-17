@@ -1,4 +1,4 @@
-const replyInteraction = require('../../utils/replyInteraction.js');
+const Interaction = require('../../utils/interaction.js');
 module.exports = {
     name: 'button',
     async execute(interaction) {
@@ -13,7 +13,7 @@ module.exports = {
             await handle.execute(interaction);
         } catch (error) {
             console.error(error);
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     color: client.colors.danger,
                     title: '予期せぬエラーが発生しました',

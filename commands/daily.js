@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 const exp = require("../utils/exp.js");
 const levelUp = require("../utils/levelUp");
@@ -34,7 +34,7 @@ module.exports = {
 
         // 現在時刻がログイン可能日時より前なら
         if (currentDate < nextLoginDate) {
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     title: '本日は既に受け取っています',
                     description: `${Math.floor((nextLoginDate - currentDate) / 360000) / 10}時間後に再び受け取ることができます。`,
@@ -76,7 +76,7 @@ module.exports = {
             reason: 'dailyコマンド'
         });
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             embeds: [{
                 author: {
                     name: interaction.user.tag,

@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 const sharp = require('sharp');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 
 const hex2rgb = hex => {
     if (hex.slice(0, 1) === '#') hex = hex.slice(1);
@@ -43,7 +43,7 @@ module.exports = {
 
         const file = new AttachmentBuilder(buffer, {name: `${hex}.png`});
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             content: `#${hex}`,
             files: [file]
         });

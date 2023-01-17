@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('delete')
@@ -18,7 +18,7 @@ module.exports = {
 
         interaction.channel.bulkDelete(number, true)
             .then(messages => {
-                replyInteraction.reply(interaction, {
+                Interaction.reply(interaction, {
                     embeds: [{
                         title: '成功しました',
                         description: `${messages.size} 件のメッセージを削除しました`,
@@ -29,7 +29,7 @@ module.exports = {
             })
             .catch(error => {
                 console.error(error);
-                replyInteraction.reply(interaction, {
+                Interaction.reply(interaction, {
                     embeds: [{
                         title: '失敗しました',
                         description: error.status === 403 ?

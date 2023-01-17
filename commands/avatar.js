@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('avatar')
@@ -13,7 +13,7 @@ module.exports = {
         let user = interaction.options.getUser('user');
         if (!user) user = interaction.user;
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             embeds: [{
                 author: {
                     name: `${user.tag}\n(${user.id})`

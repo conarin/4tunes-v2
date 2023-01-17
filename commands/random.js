@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('random')
@@ -33,7 +33,7 @@ module.exports = {
             samples = roleMemberIds.concat();
         }
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             embeds: [{
                 color: client.colors.info,
                 title: `${role.name}から最大${number}人抽出`,

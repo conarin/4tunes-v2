@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { DiscordSnowflake } = require('@sapphire/snowflake');
 const RE2 = require('re2');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('snowflake')
@@ -22,14 +22,14 @@ module.exports = {
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
         if (subcommand === 'generate') {
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 content: DiscordSnowflake.generate()
             });
         } else if (subcommand === 'date') {
             let snowflake = interaction.options.getString('snowflake');
 
             if (!new RE2(/^\d+$/).test(snowflake)) {
-                await replyInteraction.reply(interaction, {
+                await Interaction.reply(interaction, {
                     embeds: [{
                         title: '無効な値',
                         description: 'snowflakeの形式で入力してください',
@@ -40,7 +40,7 @@ module.exports = {
             }
 
             const timestamp = Math.floor(Number(DiscordSnowflake.deconstruct(snowflake).timestamp) / 1000);
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 content: `<t:${timestamp}:d> <t:${timestamp}:T>`
             });
         }

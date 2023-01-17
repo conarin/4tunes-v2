@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 module.exports = {
     data: new SlashCommandBuilder()
@@ -65,7 +65,7 @@ module.exports = {
                 replyMessage = '`送信しない`';
             } else if (choicesNumber === 1) { // 指定したチャンネル
                 if (!channel) {
-                    await replyInteraction.reply(interaction, {
+                    await Interaction.reply(interaction, {
                         embeds: [{
                             title: 'チャンネルが指定されていません',
                             description: '送信先のチャンネルを指定してください',
@@ -93,7 +93,7 @@ module.exports = {
                 replyMessage = 'レベルアップの通知先を' + replyMessage;
             }
 
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     title: '設定完了',
                     description: `${replyMessage}に設定しました`,
@@ -110,7 +110,7 @@ module.exports = {
             const levelUpChannel = guildData.level_up_notice_channel_id === null ? '送信しない' :
                 guildData.level_up_notice_channel_id === '1' ? '同じチャンネル' : `<#${guildData.level_up_notice_channel_id}>`;
 
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     author: {
                         name: interaction.guild.name,

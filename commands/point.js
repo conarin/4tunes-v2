@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits} = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 module.exports = {
     data: new SlashCommandBuilder()
@@ -71,7 +71,7 @@ module.exports = {
             reason: `pointコマンド(${subcommand} ${point})`
         });
 
-        await replyInteraction.reply(interaction, {
+        await Interaction.reply(interaction, {
             embeds: [{
                 color: client.colors.success,
                 title: '更新完了',

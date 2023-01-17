@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const replyInteraction = require('../utils/replyInteraction.js');
+const Interaction = require('../utils/interaction.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 const exp = require("../utils/exp.js");
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
 
         const memberData = await fourTunesAPI.fetch(`/guilds/${interaction.guild.id}/members`, user.id);
         if (memberData === undefined) {
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     color: client.colors.warning,
                     title: 'メンバーデータがありません',
@@ -26,7 +26,7 @@ module.exports = {
                 }]
             });
         } else {
-            await replyInteraction.reply(interaction, {
+            await Interaction.reply(interaction, {
                 embeds: [{
                     author: {
                         name: user.tag,

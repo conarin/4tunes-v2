@@ -1,6 +1,5 @@
 const RE2 = require('re2');
 module.exports = {
-    name: 'fetchMessages',
     async fetch(content) {
         const urls = content
             .split(new RE2(/(?:https|http):\/\/(?:[a-z]+\.|)(?:discord|discordapp)\.com\/channels((?:\/[0-9]+){3})/g))

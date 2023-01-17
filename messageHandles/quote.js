@@ -1,10 +1,10 @@
-const fetchMessages = require('../utils/fetchMessages.js');
+const Messages = require('../utils/messages.js');
 const sendMessage = require('../utils/sendMessage.js');
 module.exports = {
     name: 'quote',
     guildOnly: true,
     async execute(message) {
-        const messages = await fetchMessages.fetch(message.content);
+        const messages = await Messages.fetch(message.content);
 
         for (const msg of messages) {
             if (msg.guild.id !== message.guild.id) continue;

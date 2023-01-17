@@ -19,6 +19,7 @@ client.login(env.DISCORD_TOKEN);
 require("./init/setCommands.js").execute();
 require("./init/setEvents.js").execute();
 require("./init/setMessageHandles.js").execute();
+require("./init/setButtonHandles.js").execute();
 
 client.colors = {
     success: 0x43b581,

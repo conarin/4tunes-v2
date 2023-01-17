@@ -24,38 +24,39 @@ module.exports = {
         }).catch(async error => {
             console.error(error);
             console.log('options: ' + JSON.stringify(options, null, 2));
+            console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
 
-            let iconURL = client.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
-                channelName = client.user.username,
-                guildName = 'DM';
-
-            if (message.channel.type !== Discord.ChannelType.DM) {
-                iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128});
-                channelName = message.channel.name;
-                guildName = message.guild.name;
-            }
-
-            const embed = {
-                color: client.colors.danger,
-                title: `例外発生`,
-                author: {
-                    name: message.author.tag,
-                    icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
-                    url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
-                },
-                description: `${message.content}\n\`\`\`${error.stack}\`\`\``,
-                timestamp: new Date(),
-                footer: {
-                    text: `\n${channelName} in ${guildName}`,
-                    icon_url: iconURL
-                }
-            };
-
-            const logChannel = await client.channels.fetch(env.LOG_CHANNEL_ID).catch(error => console.error(error));
-            const clientApplication = await client.application.fetch();
-            if (logChannel) await logChannel
-                .send({content:`<@${clientApplication.owner.ownerId || clientApplication.owner.id}>`, embeds: [embed]})
-                .catch(error => console.error(error));
+            // let iconURL = client.user.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
+            //     channelName = client.user.username,
+            //     guildName = 'DM';
+            //
+            // if (message.channel.type !== Discord.ChannelType.DM) {
+            //     iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128});
+            //     channelName = message.channel.name;
+            //     guildName = message.guild.name;
+            // }
+            //
+            // const embed = {
+            //     color: client.colors.danger,
+            //     title: `例外発生`,
+            //     author: {
+            //         name: message.author.tag,
+            //         icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
+            //         url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128}),
+            //     },
+            //     description: `${message.content}\n\`\`\`${error.stack}\`\`\``,
+            //     timestamp: new Date(),
+            //     footer: {
+            //         text: `\n${channelName} in ${guildName}`,
+            //         icon_url: iconURL
+            //     }
+            // };
+            //
+            // const logChannel = await client.channels.fetch(env.LOG_CHANNEL_ID).catch(error => console.error(error));
+            // const clientApplication = await client.application.fetch();
+            // if (logChannel) await logChannel
+            //     .send({content:`<@${clientApplication.owner.ownerId || clientApplication.owner.id}>`, embeds: [embed]})
+            //     .catch(error => console.error(error));
 
             await sendChannel.send({embeds: [{
                     color: client.colors.danger,

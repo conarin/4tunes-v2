@@ -3,7 +3,7 @@ require('dotenv').config();
 const env = process.env;
 
 module.exports = {
-    createPool(database) {
+    create(database) {
         return mysql.createPool({
             host: env.DB_HOST,
             port: env.DB_PORT,

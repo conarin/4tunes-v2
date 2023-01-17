@@ -5,7 +5,7 @@ const express = require('express'),
 require('dotenv').config();
 const env = process.env;
 
-global.pool = require('./utils/createPool.js').createPool('4tunes');
+global.pool = require('./utils/pool.js').create('4tunes');
 global.regex = {
     uuid: new RE2(/^([0-9a-f]{8})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{12})$/i),
     id: new RE2(/^([0-9]{17,19})$/)

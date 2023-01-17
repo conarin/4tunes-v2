@@ -1,5 +1,5 @@
-const fetchMessages = require('../../utils/fetchMessages.js');
-const sendMessage = require('../../utils/sendMessage.js');
+const fetchMessages = require('../utils/fetchMessages.js');
+const sendMessage = require('../utils/sendMessage.js');
 module.exports = {
     name: 'quote',
     guildOnly: true,

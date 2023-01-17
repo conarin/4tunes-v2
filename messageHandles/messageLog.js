@@ -1,5 +1,5 @@
-const sendMessage = require('../../utils/sendMessage.js');
-const fourTunesAPI = require("../../utils/4TunesAPI");
+const sendMessage = require('../utils/sendMessage.js');
+const fourTunesAPI = require("../utils/4TunesAPI");
 module.exports = {
     name: 'messageLog',
     guildOnly: true,

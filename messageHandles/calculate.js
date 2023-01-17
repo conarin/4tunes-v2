@@ -1,5 +1,5 @@
-const calculator = require('../../utils/calculator.js');
-const sendMessage = require('../../utils/sendMessage.js');
+const calculator = require('../utils/calculator.js');
+const sendMessage = require('../utils/sendMessage.js');
 module.exports = {
     name: 'calculate',
     async execute(message) {

@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 module.exports = {
     execute() {
         client.messageHandles = new Discord.Collection();
-        const handlesPath = path.join(__dirname, '../events/messageCreate');
+        const handlesPath = path.join(__dirname, '../messageHandles');
         const handleFiles = fs.readdirSync(handlesPath).filter(file => file.endsWith('.js'));
 
         for (const file of handleFiles) {

@@ -1,6 +1,6 @@
-const exp = require("../../utils/exp.js");
-const fourTunesAPI = require("../../utils/4TunesAPI");
-const levelUp = require("../../utils/levelUp");
+const exp = require("../utils/exp.js");
+const fourTunesAPI = require("../utils/4TunesAPI");
+const levelUp = require("../utils/levelUp");
 module.exports = {
     name: 'expIncrease',
     guildOnly: true,

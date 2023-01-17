@@ -57,5 +57,31 @@ module.exports = {
                 if (err.message !== 'Missing Permissions') console.log(err.stack);
             });
         });
+    },
+    async update(interaction, options) {
+        if (!options) return;
+
+        await interaction.update({
+            content: options.content !== undefined ? String(options.content) : null,
+            embeds: options.embeds !== undefined && typeof options.embeds === 'object' ? options.embeds : null,
+            files: options.files !== undefined && typeof options.files === 'object' ? options.files : null,
+            components: options.components !== undefined && typeof options.components === 'object' ? options.components : null,
+            ephemeral: options.ephemeral === true,
+            allowedMentions: {repliedUser: false}
+        }).catch(async error => {
+            console.error(error);
+            console.log('options: ' + JSON.stringify(options, null, 2));
+            console.log('interaction.options: ' + JSON.stringify(interaction.options, null, 2));
+            console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
+
+            await interaction.reply({embeds: [{
+                    color: client.colors.danger,
+                    title: '予期せぬエラーが発生しました',
+                }],
+                ephemeral: true
+            }).catch(err => {
+                if (err.message !== 'Missing Permissions') console.log(err.stack);
+            });
+        });
     }
 };

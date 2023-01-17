@@ -3,7 +3,7 @@ const {table} = require("table");
 const RE2 = require('re2');
 const exp = require("./exp");
 const fourTunesAPI = require("./4TunesAPI");
-
+const Interaction = require('./interaction.js');
 module.exports = {
     limit: 10,
     types: [
@@ -64,7 +64,7 @@ module.exports = {
 
         const ranks = await fourTunesAPI.fetch(`/guilds/${interaction.guild.id}/ranking`, rankingType.type);
         if (!ranks || !ranks?.length) {
-            await interaction.update({
+            await Interaction.update(interaction, {
                 embeds: [{
                     title: `${rankingType.name}ランキング`,
                     description: `メンバーのデータがまだありません`,
@@ -97,7 +97,7 @@ module.exports = {
                     .setStyle(ButtonStyle.Primary)
             );
 
-        await interaction.update({
+        await Interaction.update(interaction, {
             embeds: [{
                 title: `${rankingType.name}ランキング`,
                 description: '```\n‌' + resTable + '\n```',

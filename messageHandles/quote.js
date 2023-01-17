@@ -1,5 +1,5 @@
 const Messages = require('../utils/messages.js');
-const sendMessage = require('../utils/sendMessage.js');
+const Message = require('../utils/message.js');
 module.exports = {
     name: 'quote',
     guildOnly: true,
@@ -41,7 +41,7 @@ module.exports = {
                 stickers: [...msg.stickers.values()] || null
             };
 
-            await sendMessage.send(message, message.channel, options);
+            await Message.send(message, message.channel, options);
         }
     }
 };

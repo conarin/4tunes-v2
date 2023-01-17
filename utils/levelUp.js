@@ -1,6 +1,6 @@
 const exp = require("./exp");
 const fourTunesAPI = require("./4TunesAPI");
-const sendMessage = require("./sendMessage");
+const Message = require("./message");
 module.exports = {
     async execute(message, data, increaseExp = 0) {
         // レベルアップしたら
@@ -47,6 +47,6 @@ module.exports = {
             embeds: [embed],
         };
 
-        await sendMessage.send(message, sendChannel, options);
+        await Message.send(message, sendChannel, options);
     }
 };

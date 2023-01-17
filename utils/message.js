@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 require('dotenv').config();
 const env = process.env;
 module.exports = {
-    name: 'sendMessage',
     async send(message, sendChannel, options) {
         if (!options) return;
 

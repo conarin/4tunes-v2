@@ -1,9 +1,9 @@
 const calculator = require('../utils/calculator.js');
-const sendMessage = require('../utils/sendMessage.js');
+const Message = require('../utils/message.js');
 module.exports = {
     name: 'calculate',
     async execute(message) {
         const result = calculator.calculate(message.content);
-        if (result !== undefined) await sendMessage.send(message, message.channel, {content: result});
+        if (result !== undefined) await Message.send(message, message.channel, {content: result});
     }
 };

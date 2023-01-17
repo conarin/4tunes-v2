@@ -1,4 +1,4 @@
-const sendMessage = require('../utils/sendMessage.js');
+const Message = require('../utils/message.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 module.exports = {
     name: 'messageLog',
@@ -41,6 +41,6 @@ module.exports = {
         });
         if (!logChannel) return;
 
-        await sendMessage.send(message, logChannel, options);
+        await Message.send(message, logChannel, options);
     }
 };

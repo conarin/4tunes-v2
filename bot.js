@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const path = require("path");
+const fs = require("fs");
 require('dotenv').config();
 const env = process.env;
 
@@ -16,10 +18,6 @@ global.client = new Discord.Client({
     ]
 });
 client.login(env.DISCORD_TOKEN);
-require("./init/setCommands.js").execute();
-require("./init/setEvents.js").execute();
-require("./init/setMessageHandles.js").execute();
-require("./init/setButtonHandles.js").execute();
 
 client.colors = {
     success: 0x43b581,
@@ -27,3 +25,10 @@ client.colors = {
     danger: 0xf04747,
     info: 0x3498db
 };
+
+const initPath = path.join(__dirname, './init');
+const initFiles = fs.readdirSync(initPath).filter(file => file.endsWith('.js'));
+for (const file of initFiles) {
+    const filePath = path.join(initPath, file);
+    require(filePath).execute();
+}

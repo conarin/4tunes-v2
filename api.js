@@ -24,7 +24,7 @@ app.listen(env.API_PORT);
 //     next();
 // });
 
-app.use(ipfilter(['::ffff:127.0.0.1', '::1', '::ffff:192.168.100.6'], { mode: 'allow', log: true, logLevel: 'deny' }));
+app.use(ipfilter(['::ffff:127.0.0.1', '::1'], { mode: 'allow', log: true, logLevel: 'deny' }));
 app.use((err, req, res, _next) => {
     if (err instanceof IpDeniedError) {
         res.status(401)
@@ -41,7 +41,7 @@ app.use((err, req, res, _next) => {
 });
 
 app.use('/minecraft/players', require('./routes/minecraft.js'));
-app.use('/users/', require('./routes/users.js'));
+app.use('/users', require('./routes/users.js'));
 app.use('/guilds', require('./routes/guilds.js'));
 
 app.use((req, res) => {

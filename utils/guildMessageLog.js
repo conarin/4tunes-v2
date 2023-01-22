@@ -9,6 +9,11 @@ module.exports = {
             });
         }
     },
+    async fetchChannel(channelId) {
+        return await client.channels.fetch(channelId).catch(error => {
+            if (error.status !== 404) console.error(error);
+        });
+    },
     createFooter(message) {
         const iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128}),
             channelName = message.channel.name,
@@ -23,9 +28,7 @@ module.exports = {
         const guildData = await this.fetchGuildData(message);
         if (!guildData || !guildData.log_channel_id) return;
 
-        const logChannel = await client.channels.fetch(guildData.log_channel_id).catch(error => {
-            if (error.status !== 404) console.error(error);
-        });
+        const logChannel = await this.fetchChannel(guildData.log_channel_id);
         if (!logChannel) return;
 
         await Message.send(message, logChannel, options);

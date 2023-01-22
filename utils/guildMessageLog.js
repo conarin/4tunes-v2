@@ -7,6 +7,8 @@ module.exports = {
             channelName = message.channel.name,
             guildName = message.guild.name;
 
+        const timestamp = Math.floor(Date.now() / 1000);
+
         const contentEmbed = [{
             color: color,
             description: `[${message.content}](${message.url})`,
@@ -15,10 +17,9 @@ module.exports = {
                 icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size:128})
             },
             footer: {
-                text: `${channelName} in ${guildName}`,
+                text: `${channelName} in ${guildName}\n<t:${timestamp}:d> <t:${timestamp}:T>`,
                 icon_url: iconURL
-            },
-            timestamp: message.createdAt
+            }
         }];
 
         const options = {

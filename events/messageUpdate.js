@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
-const guildMessageLog = require("../utils/guildMessageLog");
+const guildLog = require("../utils/guildLog");
 module.exports = {
     name: Discord.Events.MessageUpdate,
     once: false,
     async execute(oldMessage, newMessage) {
-        await guildMessageLog.edited(newMessage);
+        await guildLog.messageUpdated(newMessage);
     }
 };

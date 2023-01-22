@@ -1,4 +1,4 @@
-const guildMessageLog = require('../utils/guildMessageLog.js');
+const guildLog = require('../utils/guildLog.js');
 const fourTunesAPI = require("../utils/4TunesAPI");
 module.exports = {
     name: 'messageLog',
@@ -9,6 +9,6 @@ module.exports = {
             message_id: message.id
         });
 
-        await guildMessageLog.created(message);
+        await guildLog.messageCreated(message);
     }
 };

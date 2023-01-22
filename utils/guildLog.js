@@ -33,7 +33,7 @@ module.exports = {
 
         await Message.send(message, logChannel, options);
     },
-    async createdOrEdited(message, color) {
+    async createdOrUpdated(message, color) {
         const contentEmbed = [{
             color: color,
             description: `[${message.content}](${message.url})`,
@@ -53,13 +53,13 @@ module.exports = {
 
         await this.send(message, options);
     },
-    async created(message) {
-        await this.createdOrEdited(message, client.colors.success);
+    async messageCreated(message) {
+        await this.createdOrUpdated(message, client.colors.success);
     },
-    async edited(message) {
-        await this.createdOrEdited(message, client.colors.warning);
+    async messageUpdated(message) {
+        await this.createdOrUpdated(message, client.colors.warning);
     },
-    async deleted(message) {
+    async messageDeleted(message) {
         const options = {
             embeds: [{
                 color: client.colors.danger,

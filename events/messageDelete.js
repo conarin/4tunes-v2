@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
-const guildMessageLog = require("../utils/guildMessageLog");
+const guildLog = require("../utils/guildLog");
 module.exports = {
     name: Discord.Events.MessageDelete,
     once: false,
     async execute(message) {
-        await guildMessageLog.deleted(message);
+        await guildLog.messageDeleted(message);
     }
 };

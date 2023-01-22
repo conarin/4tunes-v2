@@ -13,6 +13,7 @@
   "dependencies": {
     "@sapphire/snowflake": "^3.4.0",
     "bignumber.js": "^9.1.1",
+    "date-utils": "^1.2.21",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

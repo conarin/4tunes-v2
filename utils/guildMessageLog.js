@@ -1,4 +1,5 @@
 const Message = require("./message");
+require('date-utils');
 module.exports = {
     async execute(message, logChannelId, color) {
         if (!logChannelId) return;
@@ -6,8 +7,6 @@ module.exports = {
         const iconURL = message.guild.iconURL({format: 'png', dynamic: true, size: 128}),
             channelName = message.channel.name,
             guildName = message.guild.name;
-
-        const timestamp = Math.floor(Date.now() / 1000);
 
         const contentEmbed = [{
             color: color,
@@ -17,7 +16,7 @@ module.exports = {
                 icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size:128})
             },
             footer: {
-                text: `${channelName} in ${guildName}\n<t:${timestamp}:d> <t:${timestamp}:T>`,
+                text: `${channelName} in ${guildName}\n${new Date().toFormat('YYYY/MM/DD HH24:MI:SS')}`,
                 icon_url: iconURL
             }
         }];

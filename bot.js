@@ -20,10 +20,11 @@ global.client = new Discord.Client({
 client.login(env.DISCORD_TOKEN);
 
 client.colors = {
-    success: 0x43b581,
-    warning: 0xfaa61a,
-    danger: 0xf04747,
-    info: 0x3498db
+    green: 0x43b581,
+    orange: 0xfaa61a,
+    red: 0xf04747,
+    blue: 0x3498db,
+    purple: 0x9b59b6
 };
 
 const initPath = path.join(__dirname, './init');

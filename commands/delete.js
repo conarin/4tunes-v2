@@ -22,7 +22,7 @@ module.exports = {
                     embeds: [{
                         title: '成功しました',
                         description: `${messages.size} 件のメッセージを削除しました`,
-                        color: client.colors.success
+                        color: client.colors.green
                     }],
                     ephemeral: true
                 });
@@ -34,7 +34,7 @@ module.exports = {
                         title: '失敗しました',
                         description: error.status === 403 ?
                             'メッセージ管理権限がないため削除できませんでした' : '適切な権限が付与されているか確認してください',
-                        color: client.colors.danger
+                        color: client.colors.red
                     }],
                     ephemeral: true
                 });

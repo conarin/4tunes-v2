@@ -54,15 +54,15 @@ module.exports = {
         await this.send(message, options);
     },
     async messageCreated(message) {
-        await this.createdOrUpdated(message, client.colors.success);
+        await this.createdOrUpdated(message, client.colors.green);
     },
     async messageUpdated(message) {
-        await this.createdOrUpdated(message, client.colors.warning);
+        await this.createdOrUpdated(message, client.colors.orange);
     },
     async messageDeleted(message) {
         const options = {
             embeds: [{
-                color: client.colors.danger,
+                color: client.colors.red,
                 title: 'messageDelete',
                 description: `[${message.id}](${message.url})`,
                 footer: this.createFooter(message)

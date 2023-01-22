@@ -35,7 +35,7 @@ module.exports = {
 
         await Interaction.reply(interaction, {
             embeds: [{
-                color: client.colors.info,
+                color: client.colors.blue,
                 title: `${role.name}から最大${number}人抽出`,
                 description: samples.map(id => `<@${id}>`).join('\n')
             }]

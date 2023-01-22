@@ -38,7 +38,7 @@ module.exports = {
                 embeds: [{
                     title: '本日は既に受け取っています',
                     description: `${Math.floor((nextLoginDate - currentDate) / 360000) / 10}時間後に再び受け取ることができます。`,
-                    color: client.colors.warning
+                    color: client.colors.orange
                 }]
             });
             return;

@@ -28,7 +28,7 @@ module.exports = {
             // }
             //
             // const embed = {
-            //     color: client.colors.danger,
+            //     color: client.colors.red,
             //     title: `例外発生`,
             //     author: {
             //         name: interaction.user.tag,
@@ -50,7 +50,7 @@ module.exports = {
             //     .catch(error => console.error(error));
 
             await interaction.reply({embeds: [{
-                    color: client.colors.danger,
+                    color: client.colors.red,
                     title: '予期せぬエラーが発生しました',
                 }]
             }).catch(err => {
@@ -75,7 +75,7 @@ module.exports = {
             console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
 
             await interaction.reply({embeds: [{
-                    color: client.colors.danger,
+                    color: client.colors.red,
                     title: '予期せぬエラーが発生しました',
                 }],
                 ephemeral: true

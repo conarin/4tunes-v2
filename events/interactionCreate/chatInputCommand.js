@@ -18,7 +18,7 @@ module.exports = {
             console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
             await Interaction.reply(interaction, {
                 embeds: [{
-                    color: client.colors.danger,
+                    color: client.colors.red,
                     title: '予期せぬエラーが発生しました',
                 }]
             }).catch(error => console.error(error));

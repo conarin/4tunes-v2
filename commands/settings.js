@@ -69,7 +69,7 @@ module.exports = {
                         embeds: [{
                             title: 'チャンネルが指定されていません',
                             description: '送信先のチャンネルを指定してください',
-                            color: client.colors.warning
+                            color: client.colors.orange
                         }]
                     });
                     return;
@@ -97,7 +97,7 @@ module.exports = {
                 embeds: [{
                     title: '設定完了',
                     description: `${replyMessage}に設定しました`,
-                    color: client.colors.success
+                    color: client.colors.green
                 }]
             });
         } else if (subcommand === 'show') {
@@ -128,7 +128,7 @@ module.exports = {
                             inline: true,
                         }
                     ],
-                    color: client.colors.info
+                    color: client.colors.blue
                 }]
             });
         }

@@ -33,7 +33,7 @@ module.exports = {
                     embeds: [{
                         title: '無効な値',
                         description: 'snowflakeの形式で入力してください',
-                        color: client.colors.warning
+                        color: client.colors.orange
                     }]
                 });
                 return;

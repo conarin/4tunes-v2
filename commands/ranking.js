@@ -59,7 +59,7 @@ module.exports = {
                     title: `${rankingName}ランキング`,
                     description: `メンバーのデータがまだありません`,
                     footer: {text: '1/1'},
-                    color: client.colors.info
+                    color: client.colors.blue
                 }],
                 components: [row]
             });
@@ -73,7 +73,7 @@ module.exports = {
                 title: `${rankingName}ランキング`,
                 description: '```\n‌' + resTable + '\n```',
                 footer: {text: `${currentPage}/${Math.ceil(ranks.length / ranking.limit)}`},
-                color: client.colors.info
+                color: client.colors.blue
             }],
             components: [row]
         });

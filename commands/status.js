@@ -20,7 +20,7 @@ module.exports = {
         if (memberData === undefined) {
             await Interaction.reply(interaction, {
                 embeds: [{
-                    color: client.colors.warning,
+                    color: client.colors.orange,
                     title: 'メンバーデータがありません',
                     description: `${user.tag}のデータはまだありません`
                 }]
@@ -54,7 +54,7 @@ module.exports = {
                             inline: true,
                         }
                     ],
-                    color: client.colors.info
+                    color: client.colors.blue
                 }]
             });
         }

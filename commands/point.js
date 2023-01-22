@@ -73,7 +73,7 @@ module.exports = {
 
         await Interaction.reply(interaction, {
             embeds: [{
-                color: client.colors.success,
+                color: client.colors.green,
                 title: '更新完了',
                 description: `${user.tag}のポイントを **${memberData.point_balance}** → **${memberData.point_balance + amount}** に更新しました`
             }]

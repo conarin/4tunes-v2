@@ -75,7 +75,6 @@ module.exports = {
 
     // 以下guildMember関連のイベント
     async guildMember(member, title, color) {
-        console.log(member);
         const options = {
             embeds: [{
                 color: color,

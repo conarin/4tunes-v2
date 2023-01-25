@@ -8,9 +8,9 @@ module.exports = {
         // 送信元チャンネルと送信先チャンネルが同じかつ
         // DMチャンネルまたはギルドチャンネルでメッセージ履歴の権限があれば
         let replyOptions = false;
-        if (message.channel.id === sendChannel.id &&
-            (message.channel.type === Discord.ChannelType.DM ||
-                message.channel.permissionsFor(client.user).has(Discord.PermissionsBitField.Flags.ReadMessageHistory))
+        if (message && message.channel?.id === sendChannel.id &&
+            (message.channel?.type === Discord.ChannelType.DM ||
+                message.channel?.permissionsFor(client.user).has(Discord.PermissionsBitField.Flags.ReadMessageHistory))
         ) replyOptions = {messageReference: message.id, failIfNotExists: false};
 
         await sendChannel.send({

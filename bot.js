@@ -13,6 +13,7 @@ global.client = new Discord.Client({
         Discord.GatewayIntentBits.MessageContent
     ],
     partials: [
+        Discord.Partials.GuildMember,
         Discord.Partials.Message,
         Discord.Partials.Channel
     ]

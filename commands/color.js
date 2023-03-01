@@ -10,6 +10,7 @@ module.exports = {
         .addStringOption(option => option
             .setName('hex')
             .setDescription('HEXカラーコード(#000000)')
+            .setMaxLength(7)
             .setRequired(true)
         ),
     async execute(interaction) {

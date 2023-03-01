@@ -10,7 +10,7 @@ module.exports = {
             return parseInt(str, 16) || 0;
         });
     },
-    rgb2hex(rgb = 0) {
+    rgb2hex(rgb = [0, 0, 0]) {
         return rgb.map(value => {
             return ('0' + value.toString(16)).slice(-2);
         }).join('');

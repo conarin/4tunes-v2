@@ -1,21 +1,7 @@
 const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 const sharp = require('sharp');
 const Interaction = require('../utils/interaction.js');
-
-const hex2rgb = hex => {
-    if (hex.slice(0, 1) === '#') hex = hex.slice(1);
-    if (hex.length === 3) hex = hex.slice(0,1) + hex.slice(0,1) + hex.slice(1,2) + hex.slice(1,2) + hex.slice(2,3) + hex.slice(2,3);
-
-    return [hex.slice( 0, 2 ), hex.slice( 2, 4 ), hex.slice( 4, 6 )].map(str => {
-        return parseInt(str, 16) || 0;
-    });
-};
-
-const rgb2hex = rgb => {
-    return rgb.map(value => {
-        return ('0' + value.toString(16)).slice(-2);
-    }).join('');
-};
+const color = require('../utils/color.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,8 +15,8 @@ module.exports = {
     async execute(interaction) {
         let hex = interaction.options.getString('hex');
 
-        const rgb = hex2rgb(hex);
-        hex = rgb2hex(rgb);
+        const rgb = color.hex2rgb(hex);
+        hex = color.rgb2hex(rgb);
 
         const buffer = await sharp({
             create: {

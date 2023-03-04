@@ -39,7 +39,6 @@ module.exports = {
             const options = {
                 embeds: contentEmbed.concat(msg.embeds),
                 files: [...msg.attachments.values()] || null,
-                components: msg.components || null,
                 stickers: [...msg.stickers.values()] || null
             };
 

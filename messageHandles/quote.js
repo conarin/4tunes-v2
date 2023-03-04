@@ -6,7 +6,9 @@ module.exports = {
     async execute(message) {
         const messages = await Messages.fetch(message.content);
 
-        for (const msg of messages) {
+        for (let msg of messages) {
+            if (!msg.message) continue;
+            msg = msg.message;
             if (msg.guild.id !== message.guild.id) continue;
 
             const reactions = [];

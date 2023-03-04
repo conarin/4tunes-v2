@@ -15,7 +15,8 @@ module.exports = {
             const results = {
                 guildId: match[1],
                 channelId: match[2],
-                messageId: match[3]
+                messageId: match[3],
+                status: 500
             };
 
             const guild = await client.guilds.fetch(results.guildId).catch(error => {
@@ -37,6 +38,7 @@ module.exports = {
             if (!message) return results;
 
             results.message = message;
+            results.status = 200;
 
             return results;
         }))).filter(message => message);

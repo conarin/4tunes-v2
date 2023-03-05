@@ -20,7 +20,8 @@ module.exports = {
                 embeds: [{
                     color: client.colors.red,
                     title: '予期せぬエラーが発生しました',
-                }]
+                }],
+                ephemeral: true
             }).catch(error => console.error(error));
         }
     }

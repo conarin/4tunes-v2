@@ -50,12 +50,14 @@ module.exports = {
             headers: {'Content-Type': 'application/json'}
         }).then(res => res.status).catch(error => console.error(error));
 
-        if (res !== 201) {
+        if (res !== 201 || res !== 409) {
             console.log(`${endpoint}の追加失敗`);
             console.log('res: ' + res);
             console.log(`${API_BASE_URI}${endpoint}`, body);
             throw(`${endpoint}の追加失敗`);
         }
+
+        return res;
     },
     async patch(endpoint, body) {
         const res = await fetch(`${API_BASE_URI}${endpoint}`, {
@@ -70,5 +72,7 @@ module.exports = {
             console.log(`${API_BASE_URI}${endpoint}`, body);
             throw(`${endpoint}の更新失敗`);
         }
+
+        return res;
     }
 };

@@ -32,5 +32,13 @@ module.exports = {
             components: options.components !== undefined && typeof options.components === 'object' ? options.components : null,
             allowedMentions: {repliedUser: false}
         });
+    },
+    async deferReply(interaction, options) {
+        if (!options) return;
+
+        return await interaction.deferReply({
+            ephemeral: options.ephemeral === true,
+            fetchReply: options.fetchReply === true
+        });
     }
 };

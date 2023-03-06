@@ -50,7 +50,7 @@ module.exports = {
             headers: {'Content-Type': 'application/json'}
         }).then(res => res.status).catch(error => console.error(error));
 
-        if (res !== 201 || res !== 409) {
+        if (!(res === 201 || res === 409)) {
             console.log(`${endpoint}の追加失敗`);
             console.log('res: ' + res);
             console.log(`${API_BASE_URI}${endpoint}`, body);
@@ -66,7 +66,7 @@ module.exports = {
             headers: {'Content-Type': 'application/json'}
         }).then(res => res.status).catch(error => console.error(error));
 
-        if (res !== 204) {
+        if (!(res === 204 || res === 404)) {
             console.log(`${endpoint}の更新失敗`);
             console.log('res: ' + res);
             console.log(`${API_BASE_URI}${endpoint}`, body);

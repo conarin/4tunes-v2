@@ -1,6 +1,4 @@
 const Discord = require('discord.js');
-require('dotenv').config();
-const env = process.env;
 module.exports = {
     async send(message, sendChannel, options) {
         if (!options) return;
@@ -21,19 +19,17 @@ module.exports = {
             stickers: options.stickers !== undefined && typeof options.stickers === 'object' ? options.stickers : null,
             reply: replyOptions,
             allowedMentions: {repliedUser: false}
-        }).catch(async error => {
-            console.error(error);
-            console.log('options: ' + JSON.stringify(options, null, 2));
-            console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
-            await sendChannel.send({embeds: [{
-                    color: client.colors.red,
-                    title: '予期しない例外が発生しました',
-                }],
-                reply: replyOptions,
-                allowedMentions: {repliedUser: false}
-            }).catch(err => {
-                if (err.message !== 'Missing Permissions') console.log(err.stack);
-            });
+        });
+    },
+    async edit(message, options) {
+        if (!options) return;
+
+        await message.edit({
+            content: options.content !== undefined ? String(options.content) : null,
+            embeds: options.embeds !== undefined && typeof options.embeds === 'object' ? options.embeds : null,
+            files: options.files !== undefined && typeof options.files === 'object' ? options.files : null,
+            components: options.components !== undefined && typeof options.components === 'object' ? options.components : null,
+            allowedMentions: {repliedUser: false}
         });
     }
 };

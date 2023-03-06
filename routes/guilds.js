@@ -65,5 +65,6 @@ router.patch('/:guild_id', async (req, res, next) => {
 
 router.use('/:guild_id/members', require('./members.js'));
 router.use('/:guild_id/ranking', require('./ranking.js'));
+router.use('/:guild_id/role-panels', require('./rolePanels.js'));
 
 module.exports = router;

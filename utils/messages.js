@@ -12,26 +12,35 @@ module.exports = {
                 .match(new RE2(/(\/[0-9]+){3}/))[0]
                 .split('/');
 
-            const guildId = match[1],
-                channelId = match[2],
-                messageId = match[3];
+            const results = {
+                guildId: match[1],
+                channelId: match[2],
+                messageId: match[3],
+                status: 500
+            };
 
-            const guild = await client.guilds.fetch(guildId).catch(error => {
-                if (error.status !== 403) console.log('quoteGuildFetchError: ' + error);
+            const guild = await client.guilds.fetch(results.guildId).catch(error => {
+                results.status = error.status;
+                if (error.status !== 403) console.error('GuildFetchError: ' + error);
             });
-            if (!guild) return;
+            if (!guild) return results;
 
-            const channel = await client.channels.fetch(channelId).catch(error => {
-                if (error.status !== 404) console.log('quoteChannelFetchError: ' + error);
+            const channel = await client.channels.fetch(results.channelId).catch(error => {
+                results.status = error.status;
+                if (error.status !== 404) console.error('ChannelFetchError: ' + error);
             });
-            if (!channel) return;
+            if (!channel) return results;
 
-            let message = await channel.messages.fetch(messageId).catch(error => {
-                if (error.status !== 404) console.log('quoteMessageFetchError: ' + error);
+            let message = await channel.messages.fetch(results.messageId).catch(error => {
+                results.status = error.status;
+                if (error.status !== 404) console.error('MessageFetchError: ' + error);
             });
-            if (!message) return;
+            if (!message) return results;
 
-            return message;
+            results.message = message;
+            results.status = 200;
+
+            return results;
         }))).filter(message => message);
     }
 };

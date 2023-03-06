@@ -2,17 +2,17 @@ require('dotenv').config();
 const env = process.env;
 const Interaction = require('../../utils/interaction.js');
 module.exports = {
-    name: 'chatInputCommand',
+    name: 'selectMenu',
     async execute(interaction) {
-        const command = interaction.client.commands.get(interaction.commandName);
+        const handle = interaction.client.selectMenuHandles.get(interaction.customId);
 
-        if (!command) {
-            console.log(`No command matching ${interaction.commandName} was found.`);
+        if (!handle) {
+            console.log(`No handle matching ${interaction.customId} was found.`);
             return;
         }
 
         try {
-            await command.execute(interaction);
+            await handle.execute(interaction);
         } catch (error) {
             console.error(error);
             console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);

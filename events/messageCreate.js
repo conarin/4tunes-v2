@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const fourTunesAPI = require('../utils/4TunesAPI.js');
+const Message = require("../utils/message");
+require('dotenv').config();
+const env = process.env;
 module.exports = {
     name: Discord.Events.MessageCreate,
     once: false,
@@ -25,6 +28,17 @@ module.exports = {
                 await handle.execute(message, data);
             } catch (error) {
                 console.error(error);
+                console.log(`<@${env.CLIENT_APP_OWNER_ID}>`);
+                try {
+                    await Message.send(message, message.channel, {
+                        embeds: [{
+                            color: client.colors.red,
+                            title: '予期せぬ例外が発生しました',
+                        }]
+                    });
+                } catch (err) {
+                    if (err.message !== 'Missing Permissions') console.log(err.stack);
+                }
             }
         }
     }

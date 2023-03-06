@@ -8,7 +8,8 @@ const env = process.env;
 global.pool = require('./utils/pool.js').create('4tunes');
 global.regex = {
     uuid: new RE2(/^([0-9a-f]{8})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{4})-?([0-9a-f]{12})$/i),
-    id: new RE2(/^([0-9]{17,19})$/)
+    id: new RE2(/^([0-9]{17,19})$/),
+    hexColor: new RE2(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i)
 };
 global.badRequest = require('./routes/badRequest.js');
 

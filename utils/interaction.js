@@ -34,10 +34,13 @@ module.exports = {
         });
     },
     async deferReply(interaction, options) {
-        if (!options) return;
-
         return await interaction.deferReply({
             ephemeral: options.ephemeral === true,
+            fetchReply: options.fetchReply === true
+        });
+    },
+    async deferUpdate(interaction, options) {
+        return await interaction.deferUpdate({
             fetchReply: options.fetchReply === true
         });
     }

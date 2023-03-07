@@ -60,11 +60,13 @@ module.exports = {
         });
     },
     async pagination(interaction) {
+        await Interaction.deferUpdate(interaction, {fetchReply: true});
+
         const rankingType = this.types.find(type => interaction.message.embeds[0].title.startsWith(type.name)) || this.types[0];
 
         const ranks = await fourTunesAPI.fetch(`/guilds/${interaction.guild.id}/ranking`, rankingType.type);
         if (!ranks || !ranks?.length) {
-            await Interaction.update(interaction, {
+            await Interaction.editReply(interaction, {
                 embeds: [{
                     title: `${rankingType.name}ランキング`,
                     description: `メンバーのデータがまだありません`,
@@ -97,7 +99,7 @@ module.exports = {
                     .setStyle(ButtonStyle.Primary)
             );
 
-        await Interaction.update(interaction, {
+        await Interaction.editReply(interaction, {
             embeds: [{
                 title: `${rankingType.name}ランキング`,
                 description: '```\n‌' + resTable + '\n```',

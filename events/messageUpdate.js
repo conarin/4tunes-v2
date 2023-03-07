@@ -4,6 +4,6 @@ module.exports = {
     name: Discord.Events.MessageUpdate,
     once: false,
     async execute(oldMessage, newMessage) {
-        await guildLog.messageUpdated(newMessage);
+        if (newMessage.guild && newMessage.guild.available) await guildLog.messageUpdated(newMessage);
     }
 };

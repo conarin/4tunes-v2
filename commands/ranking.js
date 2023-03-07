@@ -36,6 +36,8 @@ module.exports = {
             )
         ),
     async execute(interaction) {
+        await Interaction.deferReply(interaction, {fetchReply: true});
+
         const subcommand = interaction.options.getSubcommand();
         const rankingName = ranking.types.find(type => type.type === subcommand)?.name || '？？？';
         const currentPage = interaction.options.getInteger('page') || 1;
@@ -54,7 +56,7 @@ module.exports = {
 
         const ranks = await fourTunesAPI.fetch(`/guilds/${interaction.guild.id}/ranking`, subcommand);
         if (!ranks || !ranks?.length) {
-            await Interaction.reply(interaction, {
+            await Interaction.editReply(interaction, {
                 embeds: [{
                     title: `${rankingName}ランキング`,
                     description: `メンバーのデータがまだありません`,
@@ -68,7 +70,7 @@ module.exports = {
 
         const resTable = await ranking.table(ranks, subcommand, currentPage, ranking.limit);
 
-        await Interaction.reply(interaction, {
+        await Interaction.editReply(interaction, {
             embeds: [{
                 title: `${rankingName}ランキング`,
                 description: '```\n‌' + resTable + '\n```',

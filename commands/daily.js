@@ -9,6 +9,8 @@ module.exports = {
         .setDescription('ログインボーナスを受け取る')
         .setDMPermission(false),
     async execute(interaction) {
+        const replyMessage = await Interaction.deferReply(interaction, {fetchReply: true});
+
         // ギルド・メンバーデータを取得
         const data = {};
 
@@ -34,7 +36,7 @@ module.exports = {
 
         // 現在時刻がログイン可能日時より前なら
         if (currentDate < nextLoginDate) {
-            await Interaction.reply(interaction, {
+            await Interaction.editReply(interaction, {
                 embeds: [{
                     title: '本日は既に受け取っています',
                     description: `${Math.floor((nextLoginDate - currentDate) / 360000) / 10}時間後に再び受け取ることができます。`,
@@ -61,7 +63,7 @@ module.exports = {
         if (continuous % 5 === 0) loginBonus += 10;
         await fourTunesAPI.post(`/guilds/${interaction.guild.id}/members/${interaction.user.id}/points`, {
             channel_id: interaction.channel.id,
-            message_id: null,
+            message_id: replyMessage.id,
             amount: loginBonus,
             reason: 'dailyコマンド'
         });
@@ -76,7 +78,7 @@ module.exports = {
             reason: 'dailyコマンド'
         });
 
-        await Interaction.reply(interaction, {
+        await Interaction.editReply(interaction, {
             embeds: [{
                 author: {
                     name: interaction.user.tag,

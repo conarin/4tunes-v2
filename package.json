@@ -21,7 +21,7 @@
     "mysql2": "^2.3.3",
     "node-fetch": "^2.6.7",
     "re2": "^1.18.0",
-    "sharp": "^0.31.3",
+    "sharp": "^0.32.0",
     "table": "^6.8.1"
   },
   "devDependencies": {

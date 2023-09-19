@@ -5,7 +5,7 @@ const exp = require("./exp");
 const fourTunesAPI = require("./4TunesAPI");
 const Interaction = require('./interaction.js');
 module.exports = {
-    limit: 10,
+    limit: 5,
     types: [
         {type: 'point', name: 'ポイント'},
         {type: 'message', name: 'メッセージ'},

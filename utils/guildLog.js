@@ -14,6 +14,9 @@ module.exports = {
         });
     },
     async send(message, options) {
+        if (!(message.guild && message.guild.available)) return;
+        if (message.author?.bot) return;
+
         const guildData = await this.fetchGuildData(message.guild.id);
         if (!guildData || !guildData.log_channel_id) return;
 

@@ -38,7 +38,11 @@ module.exports = {
         };
     },
     async createdOrUpdated(message, color) {
-        const author = await client.users.fetch(message.author).catch(error => console.error(error));
+        console.log(message)
+        const author = await client.users.fetch(message.author).catch(error => {
+            console.log(message);
+            console.error(error);
+        });
 
         const contentEmbed = [{
             color: color,

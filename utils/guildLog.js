@@ -38,12 +38,14 @@ module.exports = {
         };
     },
     async createdOrUpdated(message, color) {
+        const author = await client.users.fetch(message.author).catch(error => console.error(error));
+
         const contentEmbed = [{
             color: color,
             description: `[${message.content}](${message.url})`,
             author: {
-                name: `${message.author.tag}\n(${message.author.id})`,
-                icon_url: message.author.displayAvatarURL({format: 'png', dynamic: true, size: 128})
+                name: `${author?.tag || '不明なユーザー'}\n(${author?.id || ''})`,
+                icon_url: author?.displayAvatarURL({format: 'png', dynamic: true, size: 128})
             },
             footer: this.messageFooter(message)
         }];

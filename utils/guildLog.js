@@ -38,7 +38,6 @@ module.exports = {
         };
     },
     async createdOrUpdated(message, color) {
-        console.log(message)
         const author = await client.users.fetch(message.author).catch(error => {
             console.log(message);
             console.error(error);

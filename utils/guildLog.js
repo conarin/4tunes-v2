@@ -38,6 +38,7 @@ module.exports = {
         };
     },
     async createdOrUpdated(message, color) {
+        // キャッシュされていないユーザーはnullになる。messageをfetchすれば取得できるかもしれないが、現時点では必要ないため実装しない
         const contentEmbed = [{
             color: color,
             description: `[${message.content}](${message.url})`,

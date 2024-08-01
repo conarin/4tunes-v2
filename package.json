@@ -25,6 +25,6 @@
     "table": "^6.8.1"
   },
   "devDependencies": {
-    "npm-check-updates": "^16.10.7"
+    "npm-check-updates": "^17.0.0"
   }
 }
